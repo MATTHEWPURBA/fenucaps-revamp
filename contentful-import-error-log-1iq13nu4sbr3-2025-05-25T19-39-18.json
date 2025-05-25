@@ -1,0 +1,1 @@
+{"ts":"2025-05-25T12:39:19.685Z","level":"error","error":{"originalError":{},"stacktrace":["Error: TypeError: Cannot read properties of undefined (reading 'id')","/usr/local/lib/node_modules/contentful-cli/node_modules/contentful-import/node_modules/contentful-batch-libs/dist/listr.js:21:35","process.processTicksAndRejections (node:internal/process/task_queues:95:5)"]}}

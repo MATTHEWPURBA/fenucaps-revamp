@@ -1,0 +1,103 @@
+{
+    "contentTypes": [
+      {
+        "sys": {
+          "id": "review"
+        },
+        "name": "Review",
+        "description": "Customer product reviews and testimonials",
+        "displayField": "customerName",
+        "fields": [
+          {
+            "id": "customerName",
+            "name": "Customer Name",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 2,
+                  "max": 50
+                }
+              }
+            ]
+          },
+          {
+            "id": "rating",
+            "name": "Rating",
+            "type": "Integer",
+            "required": true,
+            "validations": [
+              {
+                "range": {
+                  "min": 1,
+                  "max": 5
+                }
+              }
+            ]
+          },
+          {
+            "id": "comment",
+            "name": "Comment",
+            "type": "Text",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 10,
+                  "max": 500
+                }
+              }
+            ]
+          },
+          {
+            "id": "location",
+            "name": "Location",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "max": 100
+                }
+              }
+            ]
+          },
+          {
+            "id": "productId",
+            "name": "Product ID",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "max": 50
+                }
+              }
+            ]
+          },
+          {
+            "id": "verified",
+            "name": "Verified",
+            "type": "Boolean",
+            "required": false,
+            "defaultValue": {
+              "en-US": false
+            }
+          },
+          {
+            "id": "date",
+            "name": "Review Date",
+            "type": "Date",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "entries": [],
+    "assets": [],
+    "locales": [],
+    "tags": [],
+    "webhooks": [],
+    "editorInterfaces": []
+  }

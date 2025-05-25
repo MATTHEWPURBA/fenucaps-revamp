@@ -1,0 +1,215 @@
+{
+    "contentTypes": [
+      {
+        "sys": {
+          "id": "product"
+        },
+        "name": "Product",
+        "description": "E-commerce product for ASI Booster supplements",
+        "displayField": "name",
+        "fields": [
+          {
+            "id": "name",
+            "name": "Product Name",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 1,
+                  "max": 100
+                }
+              }
+            ]
+          },
+          {
+            "id": "slug",
+            "name": "Slug",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "unique": true
+              },
+              {
+                "regexp": {
+                  "pattern": "^[a-z0-9-]+$",
+                  "flags": null
+                }
+              }
+            ]
+          },
+          {
+            "id": "description",
+            "name": "Description",
+            "type": "Text",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 50,
+                  "max": 500
+                }
+              }
+            ]
+          },
+          {
+            "id": "price",
+            "name": "Price",
+            "type": "Integer",
+            "required": true,
+            "validations": [
+              {
+                "range": {
+                  "min": 0
+                }
+              }
+            ]
+          },
+          {
+            "id": "salePrice",
+            "name": "Sale Price",
+            "type": "Integer",
+            "required": false,
+            "validations": [
+              {
+                "range": {
+                  "min": 0
+                }
+              }
+            ]
+          },
+          {
+            "id": "images",
+            "name": "Images",
+            "type": "Array",
+            "required": true,
+            "items": {
+              "type": "Link",
+              "linkType": "Asset",
+              "validations": [
+                {
+                  "linkMimetypeGroup": ["image"]
+                }
+              ]
+            },
+            "validations": [
+              {
+                "size": {
+                  "min": 1,
+                  "max": 10
+                }
+              }
+            ]
+          },
+          {
+            "id": "category",
+            "name": "Category",
+            "type": "Symbol",
+            "required": true
+          },
+          {
+            "id": "inStock",
+            "name": "In Stock",
+            "type": "Boolean",
+            "required": true,
+            "defaultValue": {
+              "en-US": true
+            }
+          },
+          {
+            "id": "stockQuantity",
+            "name": "Stock Quantity",
+            "type": "Integer",
+            "required": true,
+            "validations": [
+              {
+                "range": {
+                  "min": 0
+                }
+              }
+            ]
+          },
+          {
+            "id": "benefits",
+            "name": "Benefits",
+            "type": "Array",
+            "required": false,
+            "items": {
+              "type": "Symbol",
+              "validations": [
+                {
+                  "size": {
+                    "max": 200
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "ingredients",
+            "name": "Ingredients",
+            "type": "Array",
+            "required": true,
+            "items": {
+              "type": "Symbol",
+              "validations": [
+                {
+                  "size": {
+                    "max": 100
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "usage",
+            "name": "Usage Instructions",
+            "type": "Text",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 20,
+                  "max": 1000
+                }
+              }
+            ]
+          },
+          {
+            "id": "warnings",
+            "name": "Warnings",
+            "type": "Text",
+            "required": false,
+            "validations": [
+              {
+                "size": {
+                  "max": 500
+                }
+              }
+            ]
+          },
+          {
+            "id": "certification",
+            "name": "Certifications",
+            "type": "Array",
+            "required": false,
+            "items": {
+              "type": "Symbol",
+              "validations": [
+                {
+                  "in": ["BPOM", "Halal", "FDA", "SGS", "ISO"]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "entries": [],
+    "assets": [],
+    "locales": [],
+    "tags": [],
+    "webhooks": [],
+    "editorInterfaces": []
+  }

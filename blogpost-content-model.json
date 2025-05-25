@@ -1,0 +1,129 @@
+{
+    "contentTypes": [
+      {
+        "sys": {
+          "id": "blogPost"
+        },
+        "name": "Blog Post",
+        "description": "Blog articles about breastfeeding and health",
+        "displayField": "title",
+        "fields": [
+          {
+            "id": "title",
+            "name": "Title",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 10,
+                  "max": 100
+                }
+              }
+            ]
+          },
+          {
+            "id": "slug",
+            "name": "Slug",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "unique": true
+              },
+              {
+                "regexp": {
+                  "pattern": "^[a-z0-9-]+$"
+                }
+              }
+            ]
+          },
+          {
+            "id": "excerpt",
+            "name": "Excerpt",
+            "type": "Text",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 50,
+                  "max": 200
+                }
+              }
+            ]
+          },
+          {
+            "id": "content",
+            "name": "Content",
+            "type": "RichText",
+            "required": true
+          },
+          {
+            "id": "featuredImage",
+            "name": "Featured Image",
+            "type": "Link",
+            "linkType": "Asset",
+            "required": true,
+            "validations": [
+              {
+                "linkMimetypeGroup": ["image"]
+              }
+            ]
+          },
+          {
+            "id": "author",
+            "name": "Author",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "size": {
+                  "min": 2,
+                  "max": 50
+                }
+              }
+            ]
+          },
+          {
+            "id": "publishedDate",
+            "name": "Published Date",
+            "type": "Date",
+            "required": true
+          },
+          {
+            "id": "category",
+            "name": "Category",
+            "type": "Symbol",
+            "required": true,
+            "validations": [
+              {
+                "in": ["Health", "Tips", "Nutrition", "Breastfeeding", "Pregnancy", "Baby Care"]
+              }
+            ]
+          },
+          {
+            "id": "tags",
+            "name": "Tags",
+            "type": "Array",
+            "required": false,
+            "items": {
+              "type": "Symbol",
+              "validations": [
+                {
+                  "size": {
+                    "max": 30
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "entries": [],
+    "assets": [],
+    "locales": [],
+    "tags": [],
+    "webhooks": [],
+    "editorInterfaces": []
+  }

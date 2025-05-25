@@ -1,0 +1,538 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "1iq13nu4sbr3"
+          }
+        },
+        "id": "product",
+        "type": "ContentType",
+        "createdAt": "2025-05-25T09:22:13.243Z",
+        "updatedAt": "2025-05-25T12:09:42.870Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 19,
+        "publishedAt": "2025-05-25T12:09:42.870Z",
+        "firstPublishedAt": "2025-05-25T09:22:13.685Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "publishedCounter": 10,
+        "version": 20,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/1iq13nu4sbr3/environments/master/content_types/product"
+      },
+      "displayField": "name",
+      "name": "Product",
+      "description": "E-commerce product",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Product Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "min": 1,
+                "max": 100
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "unique": true
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "min": 50,
+                "max": 500
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "price",
+          "name": "Price",
+          "type": "Integer",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "range": {
+                "min": 0
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "salePrice",
+          "name": "Sale Price",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+            {
+              "range": {
+                "min": 0
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "images",
+          "name": "Images",
+          "type": "Array",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "max": 6
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkMimetypeGroup": [
+                  "image"
+                ]
+              }
+            ],
+            "linkType": "Asset"
+          }
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "inStock",
+          "name": "In Stock",
+          "type": "Boolean",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "defaultValue": {
+            "en-US": true
+          },
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "stockQuantity",
+          "name": "Stock Quantity",
+          "type": "Integer",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "range": {
+                "min": -2
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "benefits",
+          "name": "Benefits",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+            ]
+          }
+        },
+        {
+          "id": "ingredients",
+          "name": "Ingredients",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+            ]
+          }
+        },
+        {
+          "id": "usage",
+          "name": "Usage Instructions",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "defaultValue": {
+            "en-US": "How to use"
+          },
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "warnings",
+          "name": "Warnings",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "defaultValue": {
+            "en-US": "Safety warnings"
+          },
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "certification",
+          "name": "Certifications",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "1iq13nu4sbr3",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 20,
+        "createdAt": "2025-05-25T09:22:13.757Z",
+        "createdBy": {
+          "sys": {
+            "id": "6rGuwgJZsOBgiqQevEXQte",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-05-25T12:09:43.942Z",
+        "updatedBy": {
+          "sys": {
+            "id": "6rGuwgJZsOBgiqQevEXQte",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "product",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "slug",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "price",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "salePrice",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "images",
+          "widgetId": "assetLinksEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "category",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "inStock",
+          "widgetId": "boolean",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "stockQuantity",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "benefits",
+          "widgetId": "listInput",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "ingredients",
+          "widgetId": "tagEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "usage",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "warnings",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "certification",
+          "widgetId": "tagEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    }
+  ],
+  "entries": [
+  ],
+  "assets": [
+  ],
+  "locales": [
+    {
+      "name": "English (United States)",
+      "code": "en-US",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "6CKPMzkOqkA6WbrmXZnJYq",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "1iq13nu4sbr3"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master-2025-05-25",
+            "uuid": "e8312f72-53f6-497f-a1c3-709606fb2fa6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "createdAt": "2025-05-24T14:54:00Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "updatedAt": "2025-05-24T14:54:00Z"
+      }
+    }
+  ],
+  "webhooks": [
+  ],
+  "roles": [
+    {
+      "name": "Editor",
+      "description": "Allows editing, publishing and archiving of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "6DgzaTh3alKupGbjGoV2dE",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "1iq13nu4sbr3"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "createdAt": "2025-05-24T14:54:00Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6rGuwgJZsOBgiqQevEXQte"
+          }
+        },
+        "updatedAt": "2025-05-24T14:54:00Z"
+      }
+    }
+  ]
+}
