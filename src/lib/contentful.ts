@@ -1,5 +1,11 @@
 import { createClient, Entry, EntryFieldTypes } from 'contentful';
 
+// Debug environment variables
+console.log('Contentful Config:', {
+  spaceId: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+  hasAccessToken: !!process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+});
+
 // Define Entry Skeleton Types for each content type
 export interface ProductSkeleton {
   contentTypeId: 'product';
@@ -113,6 +119,21 @@ export interface BlogPostFields {
   category: string;
   tags?: string[];
 }
+
+
+// Test connection function
+export async function testConnection() {
+  try {
+    const space = await client.getSpace();
+    console.log('✅ Contentful connection successful:', space.name);
+    return true;
+  } catch (error) {
+    console.error('❌ Contentful connection failed:', error);
+    return false;
+  }
+}
+
+
 
 // API Functions with proper typing
 export async function getAllProducts(): Promise<Product[]> {
