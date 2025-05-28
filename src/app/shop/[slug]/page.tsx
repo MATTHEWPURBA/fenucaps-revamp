@@ -4,13 +4,16 @@ import ProductDetail from '@/app/components/ProductDetail';
 import { notFound } from 'next/navigation';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function ProductPage({ params }: Props) {
-  const product = await getProductBySlug(params.slug);
+  // Await the params since it's now a Promise in Next.js 15
+  const { slug } = await params;
+  
+  const product = await getProductBySlug(slug);
   
   if (!product) {
     notFound();

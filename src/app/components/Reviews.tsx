@@ -1,10 +1,8 @@
 // src/app/components/Reviews.tsx
 'use client';
-import { useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
 
 export default function Reviews() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   
   const reviews = [
     {

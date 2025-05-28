@@ -1,4 +1,6 @@
-import { createClient, Entry, EntryFieldTypes } from 'contentful';
+// src/lib/contentful.ts
+import { createClient, Entry, EntryFieldTypes, Asset } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
 // Debug environment variables
 console.log('Contentful Config:', {
@@ -73,14 +75,7 @@ export interface ProductFields {
   description: string;
   price: number;
   salePrice?: number;
-  images: Array<{
-    fields: {
-      file: {
-        url: string;
-      };
-      title: string;
-    };
-  }>;
+  images: Asset[];
   category: string;
   inStock: boolean;
   stockQuantity: number;
@@ -105,21 +100,13 @@ export interface BlogPostFields {
   title: string;
   slug: string;
   excerpt: string;
-  content: any; // Rich text content
-  featuredImage: {
-    fields: {
-      file: {
-        url: string;
-      };
-      title: string;
-    };
-  };
+  content: Document; // Rich text content from Contentful
+  featuredImage: Asset;
   author: string;
   publishedDate: string;
   category: string;
   tags?: string[];
 }
-
 
 // Test connection function
 export async function testConnection() {
@@ -132,8 +119,6 @@ export async function testConnection() {
     return false;
   }
 }
-
-
 
 // API Functions with proper typing
 export async function getAllProducts(): Promise<Product[]> {
@@ -255,7 +240,7 @@ export function getProductFields(product: Product): ProductFields {
     description: product.fields.description || '',
     price: product.fields.price || 0,
     salePrice: product.fields.salePrice,
-    images: (product.fields.images as any) || [],
+    images: (product.fields.images as unknown as Asset[]) || [],
     category: product.fields.category || '',
     inStock: product.fields.inStock ?? true,
     stockQuantity: product.fields.stockQuantity || 0,
@@ -285,12 +270,30 @@ export function getBlogPostFields(blogPost: BlogPost): BlogPostFields {
     slug: blogPost.fields.slug || '',
     excerpt: blogPost.fields.excerpt || '',
     content: blogPost.fields.content,
-    featuredImage: (blogPost.fields.featuredImage as any) || { fields: { file: { url: '' }, title: '' } },
+    featuredImage: blogPost.fields.featuredImage as unknown as Asset,
     author: blogPost.fields.author || '',
     publishedDate: blogPost.fields.publishedDate || new Date().toISOString(),
     category: blogPost.fields.category || '',
     tags: blogPost.fields.tags || [],
   };
+}
+
+// Helper function to render rich text content
+export function renderRichTextContent(content: Document): string {
+  // Simple text extraction from rich text content
+  // For full rendering, use @contentful/rich-text-react-renderer
+  if (!content || !content.content) return '';
+  
+  return content.content
+    .map((node: any) => {
+      if (node.nodeType === 'paragraph') {
+        return node.content
+          ?.map((textNode: any) => textNode.value || '')
+          .join('') || '';
+      }
+      return '';
+    })
+    .join('\n');
 }
 
 // src/lib/contentful.ts

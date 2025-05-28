@@ -20,7 +20,17 @@ export default function ProductDetail({ product, reviews }: ProductDetailProps) 
   // Get typed field values
   const productFields = getProductFields(product);
 
+  // Helper function to safely get image URL
+  const getImageUrl = (image: any): string => {
+    if (!image?.fields?.file?.url) return '';
+    const url = image.fields.file.url;
+    return typeof url === 'string' ? url : '';
+  };
+
   const addToCart = () => {
+    const firstImage = productFields.images[0];
+    const imageUrl = firstImage ? getImageUrl(firstImage) : '';
+    
     dispatch({
       type: 'ADD_ITEM',
       payload: {
@@ -28,7 +38,7 @@ export default function ProductDetail({ product, reviews }: ProductDetailProps) 
         name: productFields.name,
         price: productFields.salePrice || productFields.price,
         quantity,
-        image: productFields.images[0]?.fields.file.url || '',
+        image: imageUrl,
       },
     });
   };
@@ -40,40 +50,60 @@ export default function ProductDetail({ product, reviews }: ProductDetailProps) 
       }, 0) / reviews.length 
     : 4.8;
 
+  // Check if we have images
+  const hasImages = productFields.images && productFields.images.length > 0;
+  const currentImage = hasImages ? productFields.images[selectedImage] : null;
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container-custom py-8">
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
           {/* Product Images */}
           <div>
-            <div className="relative h-96 mb-4 rounded-xl overflow-hidden">
-              {productFields.images[selectedImage] && (
+            <div className="relative h-96 mb-4 rounded-xl overflow-hidden bg-gray-200">
+              {currentImage && getImageUrl(currentImage) ? (
                 <Image
-                  src={`https:${productFields.images[selectedImage].fields.file.url}`}
+                  src={`https:${getImageUrl(currentImage)}`}
                   alt={productFields.name}
                   fill
                   className="object-cover"
                 />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <span className="text-gray-400">No Image Available</span>
+                </div>
               )}
             </div>
-            <div className="flex space-x-2">
-              {productFields.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`relative h-20 w-20 rounded-lg overflow-hidden ${
-                    selectedImage === index ? 'ring-2 ring-primary-600' : ''
-                  }`}
-                >
-                  <Image
-                    src={`https:${image.fields.file.url}`}
-                    alt={image.fields.title}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            
+            {hasImages && (
+              <div className="flex space-x-2">
+                {productFields.images.map((image, index) => {
+                  const imageUrl = getImageUrl(image);
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                      className={`relative h-20 w-20 rounded-lg overflow-hidden bg-gray-200 ${
+                        selectedImage === index ? 'ring-2 ring-primary-600' : ''
+                      }`}
+                    >
+                      {imageUrl ? (
+                        <Image
+                          src={`https:${imageUrl}`}
+                          alt={`Product image ${index + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full">
+                          <span className="text-xs text-gray-400">No Img</span>
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
@@ -301,7 +331,7 @@ export default function ProductDetail({ product, reviews }: ProductDetailProps) 
                             {new Date(reviewFields.date).toLocaleDateString('id-ID')}
                           </span>
                         </div>
-                        <p className="text-gray-700">"{reviewFields.comment}"</p>
+                        <p className="text-gray-700">&ldquo;{reviewFields.comment}&rdquo;</p>
                       </div>
                     );
                   })}

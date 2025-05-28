@@ -15,6 +15,13 @@ export default function ProductGrid({ products }: ProductGridProps) {
   const { dispatch } = useCart();
   const [sortBy, setSortBy] = useState('name');
 
+  // Helper function to safely get image URL
+  const getImageUrl = (image: any): string => {
+    if (!image?.fields?.file?.url) return '';
+    const url = image.fields.file.url;
+    return typeof url === 'string' ? url : '';
+  };
+
   const sortedProducts = [...products].sort((a, b) => {
     const aFields = getProductFields(a);
     const bFields = getProductFields(b);
@@ -32,6 +39,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
 
   const addToCart = (product: Product) => {
     const productFields = getProductFields(product);
+    const firstImage = productFields.images[0];
+    const imageUrl = firstImage ? getImageUrl(firstImage) : '';
+    
     dispatch({
       type: 'ADD_ITEM',
       payload: {
@@ -39,7 +49,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
         name: productFields.name,
         price: productFields.salePrice || productFields.price,
         quantity: 1,
-        image: productFields.images[0]?.fields.file.url || '',
+        image: imageUrl,
       },
     });
   };
@@ -66,18 +76,24 @@ export default function ProductGrid({ products }: ProductGridProps) {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedProducts.map((product) => {
           const productFields = getProductFields(product);
+          const firstImage = productFields.images[0];
+          const imageUrl = firstImage ? getImageUrl(firstImage) : '';
           
           return (
             <div key={product.sys.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <Link href={`/shop/${productFields.slug}`}>
-                <div className="relative h-64">
-                  {productFields.images[0] && (
+                <div className="relative h-64 bg-gray-200">
+                  {imageUrl ? (
                     <Image
-                      src={`https:${productFields.images[0].fields.file.url}`}
+                      src={`https:${imageUrl}`}
                       alt={productFields.name}
                       fill
                       className="object-cover"
                     />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <span className="text-gray-400">No Image</span>
+                    </div>
                   )}
                   {productFields.salePrice && (
                     <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-bold">
